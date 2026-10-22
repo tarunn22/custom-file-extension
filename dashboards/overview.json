@@ -421,6 +421,75 @@
         }
       },
       "queriesSettings": { "resolution": "" }
+    },
+    {
+      "name": "File Owner",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": { "top": 912, "left": 0, "width": 912, "height": 304 },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "File Owner by Path",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": ["file_path", "file_owner"],
+          "metricSelector": "custom.file.exists:splitBy(\"file_path\",\"file_owner\")",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": { "color": "DEFAULT" },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": { "visible": true },
+          "yAxes": [
+            {
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": ["A"],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": { "yAxis": "VALUE" },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              { "color": "#7dc540" },
+              { "color": "#f5d30f" },
+              { "color": "#dc172a" }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": { "hiddenColumns": [] },
+        "graphChartSettings": { "connectNulls": false },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": { "resolution": "" }
     }
   ]
 }

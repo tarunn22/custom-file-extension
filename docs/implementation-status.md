@@ -4,7 +4,9 @@
 
 This document records the work completed to prepare, validate, sign, and upload the Dynatrace File Monitor Extension Framework 2.0 extension.
 
-Version 1.1.0 was uploaded successfully to the Dynatrace environment configured for this project. Version 1.1.1 has since been rebuilt and signed locally; its tenant validation and upload are still pending. No API token or private-key contents are included in this document.
+Versions 1.1.0 and 1.1.1 were uploaded successfully to the Dynatrace environment configured for this project. Version 1.1.1 includes the bundled dashboard's File Owner by Path table. No API token or private-key contents are included in this document.
+
+On 2026-10-22, version 1.1.1 was rebuilt and signed with the updated dashboard, validated, and uploaded successfully.
 
 ## Environment
 
@@ -151,7 +153,7 @@ Extension validation successful!
 Extension upload successful!
 ```
 
-Those remote validation and upload results apply to version 1.1.0. The current version 1.1.1 package was rebuilt and signed locally after OneAgent reported a signature-check failure for version 1.1.0. Its `extension.zip` and `extension.zip.sig` entries are present, its manifest reports version 1.1.1, and the developer certificate verifies against the local CA certificate. Version 1.1.1 has not yet been validated or uploaded to Dynatrace.
+Version 1.1.0 was validated and uploaded successfully. Version 1.1.1 was rebuilt and signed locally after OneAgent reported a signature-check failure for version 1.1.0. Its `extension.zip` and `extension.zip.sig` entries are present, its manifest reports version 1.1.1, and the developer certificate verifies against the local CA certificate. On 2026-10-22, version 1.1.1 was also validated and uploaded successfully.
 
 ```text
 dist\custom_file-monitor-1.1.1.zip
@@ -166,11 +168,11 @@ dist\custom_file-monitor-1.1.1.zip
 - [`extension/dashboards/overview.json`](../extension/dashboards/overview.json): bundled dashboard definition.
 - [`activation_config.json`](../activation_config.json): local testing configuration.
 - [`dist/custom_file-monitor-1.1.0.zip`](../dist/custom_file-monitor-1.1.0.zip): previously uploaded package.
-- [`dist/custom_file-monitor-1.1.1.zip`](../dist/custom_file-monitor-1.1.1.zip): current locally rebuilt and signed package; tenant validation/upload pending.
+- [`dist/custom_file-monitor-1.1.1.zip`](../dist/custom_file-monitor-1.1.1.zip): locally rebuilt, signed, validated, and uploaded package.
 
 ## Remaining Work
 
-First validate and upload `dist\custom_file-monitor-1.1.1.zip` to Dynatrace, using the CA certificate that issued its developer signing certificate in the tenant's extension-certificate trust settings. Then confirm OneAgent downloads version 1.1.1 without a signature error. Do not copy the CA certificate into the OneAgent host certificate directory or upload signing private keys. Once the package is accepted, create or update the monitoring configuration:
+Confirm OneAgent downloads version 1.1.1 without a signature error. Do not copy the CA certificate into the OneAgent host certificate directory or upload signing private keys. Then create or update the monitoring configuration:
 
 1. Open Dynatrace Hub and locate **File Monitor** under managed/custom extensions.
 2. Create a monitoring configuration for the uploaded extension.
@@ -191,15 +193,20 @@ First validate and upload `dist\custom_file-monitor-1.1.1.zip` to Dynatrace, usi
 
 ## Security Follow-Up
 
-The API token was supplied during this session and should be treated as exposed. Revoke it and create a replacement token with only the permissions required for extension validation/upload. Update the local `.env` with the replacement token without committing the file.
+An API token was supplied in chat during this session and should be treated as exposed. Revoke that token and create a replacement token with only the permissions required for extension validation/upload. Keep the replacement only in the ignored local `.env`; never commit or share it.
 
 The certificate private keys remain local. Keep `ca.key`, `developer.key`, `developer.pem`, and `developer-certkey.pem` private and backed up securely if future rebuilds are required.
 
 ## Current Status
 
-**Build:** Version 1.1.1 complete  
-**Signing:** Version 1.1.1 complete; local CA chain verified  
-**Remote validation:** Version 1.1.0 successful; version 1.1.1 pending  
-**Upload:** Version 1.1.0 successful; version 1.1.1 pending  
-**OneAgent signature issue:** Pending verification with version 1.1.1  
-**Monitoring configuration and activation:** Pending  
+**Build:** Version 1.1.1 complete
+
+**Signing:** Version 1.1.1 complete; local CA chain verified
+
+**Remote validation:** Versions 1.1.0 and 1.1.1 successful
+
+**Upload:** Versions 1.1.0 and 1.1.1 successful
+
+**OneAgent signature issue:** Pending verification with version 1.1.1
+
+**Monitoring configuration and activation:** Pending

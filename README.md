@@ -4,7 +4,7 @@ A customizable example showing how to build a **Dynatrace Extension Framework 2.
 
 ## What it does
 
-For each configured file path the extension reports four metrics every polling cycle:
+For each configured file path the extension reports six metrics every polling cycle:
 
 | Metric key | Description |
 |---|---|
@@ -15,7 +15,7 @@ For each configured file path the extension reports four metrics every polling c
 | `custom.file.change_age_seconds` | Seconds since file metadata changed (ctime) |
 | `custom.file.mode` | Numeric file permission mode |
 
-Metrics include `file_path`, `file_owner`, `file_group`, `file_mountpoint`, and `file_mode_octal` dimensions when the file exists. They are split by `file_path` so you can monitor multiple files from a single extension activation. A built-in topology type (`custom:file-monitor`) creates entities per file, and a dashboard is bundled with the extension.
+Metrics include `file_path`, `file_owner`, `file_group`, `file_mountpoint`, and `file_mode_octal` dimensions when the file exists. The dashboard includes a table showing each file path and its owner. The dimensions are split by `file_path` so you can monitor multiple files from a single extension activation. A built-in topology type (`custom:file-monitor`) creates entities per file, and a dashboard is bundled with the extension.
 
 ---
 
