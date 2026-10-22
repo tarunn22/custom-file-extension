@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="file_monitor",
-    version="1.1.0",
+    version="1.1.1",
     description="Dynatrace OneAgent Extension 2.0 — File Monitor",
-    author="Your Company Name",
+    author="CareFirst BlueCross BlueShield",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    python_requires=">=3.8",
+    python_requires=">=3.10",
     install_requires=[
-        "dynatrace-extension-sdk>=1.0.0",
+        "dt-extensions-sdk>=1.0.0",
     ],
 )

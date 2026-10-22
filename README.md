@@ -12,8 +12,10 @@ For each configured file path the extension reports four metrics every polling c
 | `custom.file.size_bytes` | File size in bytes |
 | `custom.file.age_seconds` | Seconds since the file was last modified |
 | `custom.file.line_count` | Line count (only when `count_lines: true`) |
+| `custom.file.change_age_seconds` | Seconds since file metadata changed (ctime) |
+| `custom.file.mode` | Numeric file permission mode |
 
-Metrics are split by the `file_path` dimension so you can monitor multiple files from a single extension activation. A built-in topology type (`custom:file-monitor`) creates entities per file, and a dashboard is bundled with the extension.
+Metrics include `file_path`, `file_owner`, `file_group`, `file_mountpoint`, and `file_mode_octal` dimensions when the file exists. They are split by `file_path` so you can monitor multiple files from a single extension activation. A built-in topology type (`custom:file-monitor`) creates entities per file, and a dashboard is bundled with the extension.
 
 ---
 
@@ -21,7 +23,7 @@ Metrics are split by the `file_path` dimension so you can monitor multiple files
 
 | Tool | Purpose |
 |---|---|
-| Python 3.8+ | Run and develop the extension |
+| Python 3.10+ | Run and develop the extension |
 | [Dynatrace CLI (`dt`)](https://docs.dynatrace.com/docs/extend-dynatrace/extensions20/dt-cli) | Build, sign, and upload the extension |
 | OneAgent 1.239+ | Deployed on the host(s) you want to monitor |
 | Dynatrace tenant | Where the extension is uploaded and activated |
@@ -29,7 +31,7 @@ Metrics are split by the `file_path` dimension so you can monitor multiple files
 Install the Python SDK and development tools:
 
 ```bash
-pip install dynatrace-extension-sdk dt-extensions-sdk
+pip install dt-extensions-sdk
 ```
 
 ---
@@ -39,13 +41,14 @@ pip install dynatrace-extension-sdk dt-extensions-sdk
 ```
 cffileextension/
 ├── extension/
-│   └── extension.yaml       # Extension manifest — metrics, topology, UI screens
+│   ├── extension.yaml       # Extension manifest — metrics, topology, UI screens
+│   ├── activationSchema.json
+│   └── dashboards/
+│       └── overview.json
 ├── src/
 │   └── file_monitor/
 │       ├── __init__.py
 │       └── __main__.py      # Extension logic — edit this to customise behaviour
-├── dashboards/
-│   └── overview.json        # Bundled dashboard uploaded with the extension
 ├── activation_config.json   # Example config for local testing
 ├── setup.py
 └── README.md

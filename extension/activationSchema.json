@@ -1,0 +1,86 @@
+{
+  "types": {
+    "endpoint": {
+      "displayName": "File to Monitor",
+      "type": "object",
+      "summaryPattern": "{file_path}",
+      "properties": {
+        "file_path": {
+          "displayName": "File Path",
+          "description": "Absolute path to the file to monitor",
+          "type": "text",
+          "nullable": false,
+          "default": ""
+        },
+        "count_lines": {
+          "displayName": "Count Lines",
+          "description": "Count lines on each poll",
+          "type": "boolean",
+          "nullable": false,
+          "default": false
+        }
+      }
+    },
+    "pythonRemote": {
+      "type": "object",
+      "properties": {
+        "endpoints": {
+          "displayName": "Files",
+          "description": "Files to monitor",
+          "type": "list",
+          "nullable": false,
+          "items": {
+            "type": {
+              "$ref": "#/types/endpoint"
+            }
+          },
+          "minItems": 1,
+          "maxItems": 100,
+          "default": []
+        }
+      }
+    },
+    "pythonLocal": {
+      "type": "object",
+      "properties": {
+        "endpoints": {
+          "displayName": "Files",
+          "description": "Files to monitor",
+          "type": "list",
+          "items": {
+            "type": {
+              "$ref": "#/types/endpoint"
+            }
+          },
+          "nullable": false,
+          "minItems": 1,
+          "maxItems": 100,
+          "default": []
+        }
+      }
+    }
+  },
+  "dynatrace": "1",
+  "description": "File monitor configuration",
+  "schemaId": "file-monitor.activation",
+  "displayName": "File Monitor configuration",
+  "ownerProductManagement": "File Monitor",
+  "ownerDevelopment": "File Monitor",
+  "maturity": "GENERAL_AVAILABILITY",
+  "allowedScopes": ["environment"],
+  "multiObject": false,
+  "properties": {
+    "pythonRemote": {
+      "displayName": "Files",
+      "type": {
+        "$ref": "#/types/pythonRemote"
+      }
+    },
+    "pythonLocal": {
+      "displayName": "Files",
+      "type": {
+        "$ref": "#/types/pythonLocal"
+      }
+    }
+  }
+}

@@ -1,14 +1,19 @@
 name: custom:file-monitor
-version: "1.1.0"
-minDynatraceVersion: "1.239"
+version: "1.1.1"
+minDynatraceVersion: "1.285"
 author:
-  name: "Your Company Name"
+  name: "CareFirst BlueCross BlueShield"
 
 python:
-  runtime: "python3"
-  modules:
-    - name: file_monitor
-      entrypoint: file_monitor.__main__:main
+  runtime:
+    module: file_monitor
+    version:
+      min: "3.10"
+  activation:
+    local:
+      path: activationSchema.json
+    remote:
+      path: activationSchema.json
 
 metrics:
   - key: custom.file.exists
@@ -78,13 +83,20 @@ screens:
   - entityType: custom:file-monitor
     listSettings:
       staticContent:
+        showGlobalFilter: true
         header:
           title: File Monitors
+      layout:
+        autoGenerate: true
     detailsSettings:
       staticContent:
         showProblems: true
         showProperties: true
         showTags: true
+        showGlobalFilter: true
+        showAddTag: true
+      layout:
+        autoGenerate: true
     propertiesCard:
       properties:
         - type: ATTRIBUTE
@@ -109,60 +121,50 @@ screens:
             displayName: Mode (octal)
     chartsCards:
       - key: file-size-card
+        numberOfVisibleCharts: 2
+        mode: NORMAL
         displayName: File Size & Age
         charts:
           - displayName: File Size (bytes)
-            metrics:
-              - metricSelector: "custom.file.size_bytes:splitBy(\"file_path\")"
+            visualizationType: GRAPH_CHART
+            graphChartConfig:
+              metrics:
+                - metricSelector: "custom.file.size_bytes:splitBy(\"file_path\")"
           - displayName: File Age (seconds)
-            metrics:
-              - metricSelector: "custom.file.age_seconds:splitBy(\"file_path\")"
+            visualizationType: GRAPH_CHART
+            graphChartConfig:
+              metrics:
+                - metricSelector: "custom.file.age_seconds:splitBy(\"file_path\")"
       - key: file-health-card
+        numberOfVisibleCharts: 2
+        mode: NORMAL
         displayName: File Health
         charts:
           - displayName: File Exists
-            metrics:
-              - metricSelector: "custom.file.exists:splitBy(\"file_path\")"
+            visualizationType: GRAPH_CHART
+            graphChartConfig:
+              metrics:
+                - metricSelector: "custom.file.exists:splitBy(\"file_path\")"
           - displayName: Line Count
-            metrics:
-              - metricSelector: "custom.file.line_count:splitBy(\"file_path\")"
+            visualizationType: GRAPH_CHART
+            graphChartConfig:
+              metrics:
+                - metricSelector: "custom.file.line_count:splitBy(\"file_path\")"
       - key: file-meta-card
+        numberOfVisibleCharts: 2
+        mode: NORMAL
         displayName: File Metadata
         charts:
           - displayName: Metadata Change Age (seconds)
-            metrics:
-              - metricSelector: "custom.file.change_age_seconds:splitBy(\"file_path\")"
+            visualizationType: GRAPH_CHART
+            graphChartConfig:
+              metrics:
+                - metricSelector: "custom.file.change_age_seconds:splitBy(\"file_path\")"
           - displayName: File Mode (numeric)
-            metrics:
-              - metricSelector: "custom.file.mode:splitBy(\"file_path\",\"file_mode_octal\")"
+            visualizationType: GRAPH_CHART
+            graphChartConfig:
+              metrics:
+                - metricSelector: "custom.file.mode:splitBy(\"file_path\",\"file_mode_octal\")"
 
 dashboards:
   - path: "dashboards/overview.json"
-
-activationSchema:
-  types:
-    endpoint:
-      displayName: File to Monitor
-      properties:
-        file_path:
-          displayName: File Path
-          description: Absolute path to the file to monitor (e.g. /var/log/app.log)
-          type: text
-          nullable: false
-          default: ""
-        count_lines:
-          displayName: Count Lines
-          description: Count lines on each poll — disable for large binary files
-          type: boolean
-          nullable: false
-          default: false
-  properties:
-    endpoints:
-      displayName: Files
-      description: One entry per file you want to monitor
-      type:
-        $ref: "#/types/endpoint"
-      nullable: false
-      items:
-        constraints: []
-      default: []

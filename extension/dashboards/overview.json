@@ -1,0 +1,426 @@
+{
+  "metadata": {
+    "configurationVersions": [7]
+  },
+  "dashboardMetadata": {
+    "name": "CUSTOM FILE",
+    "shared": false,
+    "tags": ["custom", "file-monitor"]
+  },
+  "tiles": [
+    {
+      "name": "File Existence",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": { "top": 0, "left": 0, "width": 456, "height": 304 },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "File Existence",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": ["file_path"],
+          "metricSelector": "custom.file.exists:splitBy(\"file_path\")",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": { "color": "DEFAULT" },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": { "visible": true },
+          "yAxes": [
+            {
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": ["A"],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": { "yAxis": "VALUE" },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              { "color": "#7dc540" },
+              { "color": "#f5d30f" },
+              { "color": "#dc172a" }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": { "hiddenColumns": [] },
+        "graphChartSettings": { "connectNulls": false },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": { "resolution": "" }
+    },
+    {
+      "name": "File Size (bytes)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": { "top": 0, "left": 456, "width": 456, "height": 304 },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "File Size (bytes)",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": ["file_path"],
+          "metricSelector": "custom.file.size_bytes:splitBy(\"file_path\")",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": { "color": "DEFAULT" },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": { "visible": true },
+          "yAxes": [
+            {
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": ["A"],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": { "yAxis": "VALUE" },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              { "color": "#7dc540" },
+              { "color": "#f5d30f" },
+              { "color": "#dc172a" }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": { "hiddenColumns": [] },
+        "graphChartSettings": { "connectNulls": false },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": { "resolution": "" }
+    },
+    {
+      "name": "File Age (seconds)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": { "top": 304, "left": 0, "width": 456, "height": 304 },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "File Age (seconds)",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": ["file_path"],
+          "metricSelector": "custom.file.age_seconds:splitBy(\"file_path\")",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": { "color": "DEFAULT" },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": { "visible": true },
+          "yAxes": [
+            {
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": ["A"],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": { "yAxis": "VALUE" },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              { "color": "#7dc540" },
+              { "color": "#f5d30f" },
+              { "color": "#dc172a" }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": { "hiddenColumns": [] },
+        "graphChartSettings": { "connectNulls": false },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": { "resolution": "" }
+    },
+    {
+      "name": "Line Count",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": { "top": 304, "left": 456, "width": 456, "height": 304 },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Line Count",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": ["file_path"],
+          "metricSelector": "custom.file.line_count:splitBy(\"file_path\")",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": { "color": "DEFAULT" },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": { "visible": true },
+          "yAxes": [
+            {
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": ["A"],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": { "yAxis": "VALUE" },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              { "color": "#7dc540" },
+              { "color": "#f5d30f" },
+              { "color": "#dc172a" }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": { "hiddenColumns": [] },
+        "graphChartSettings": { "connectNulls": false },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": { "resolution": "" }
+    },
+    {
+      "name": "Metadata Change Age (seconds)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": { "top": 608, "left": 0, "width": 456, "height": 304 },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Metadata Change Age (seconds)",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": ["file_path"],
+          "metricSelector": "custom.file.change_age_seconds:splitBy(\"file_path\")",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": { "color": "DEFAULT" },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": { "visible": true },
+          "yAxes": [
+            {
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": ["A"],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": { "yAxis": "VALUE" },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              { "color": "#7dc540" },
+              { "color": "#f5d30f" },
+              { "color": "#dc172a" }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": { "hiddenColumns": [] },
+        "graphChartSettings": { "connectNulls": false },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": { "resolution": "" }
+    },
+    {
+      "name": "File Mode",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": { "top": 608, "left": 456, "width": 456, "height": 304 },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "File Mode",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": ["file_path"],
+          "metricSelector": "custom.file.mode:splitBy(\"file_path\")",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": { "color": "DEFAULT" },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": { "visible": true },
+          "yAxes": [
+            {
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": ["A"],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": { "yAxis": "VALUE" },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              { "color": "#7dc540" },
+              { "color": "#f5d30f" },
+              { "color": "#dc172a" }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": { "hiddenColumns": [] },
+        "graphChartSettings": { "connectNulls": false },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": { "resolution": "" }
+    }
+  ]
+}
